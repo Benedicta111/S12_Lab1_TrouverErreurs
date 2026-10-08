@@ -17,10 +17,10 @@ namespace Mission.Models
         [DataType(DataType.Currency)]
         public decimal PrixVente { get; set; }
         [ForeignKey("Categorie")]
-        public int CategorieId { get; set; }
+        public int? CategorieId { get; set; }
       
         [ValidateNever]
-        public Categorie Categorie { get; set; }
+        public Categorie? Categorie { get; set; }
 
 
     }

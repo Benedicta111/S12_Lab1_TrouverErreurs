@@ -50,7 +50,7 @@ namespace Mission.Controllers
         public IActionResult Create()
         {
            Produit_VM produit_VM = new Produit_VM();
-            produit_VM.CategorieList = _context.Categories.OrderBy(c => c.Titre).Select(i => new SelectListItem
+            produit_VM.CategorieList = _context.Categories.Select(i => new SelectListItem
             {
                 Text = i.Titre,
                 Value = i.Id.ToString()
@@ -71,10 +71,23 @@ namespace Mission.Controllers
             {
                 
                 _context.Add(produit_VM.Produit);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                produit_VM.CategorieList = _context.Categories.Select(c => new SelectListItem
+                {
+                    Text = c.Titre,
+                    Value = c.Id.ToString()
+
+                });
+                _context.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-           
+            produit_VM.CategorieList = _context.Categories.Select(c => new SelectListItem
+            {
+                Text = c.Titre,
+                Value = c.Id.ToString()
+
+            });
+
+
             return View(produit_VM);
         }
 
