@@ -20,7 +20,7 @@ namespace Mission.Models
         public int CategorieId { get; set; }
       
      
-        public Categorie Categorie { get; set; }
+        public Categorie? Categorie { get; set; }
 
 
     }

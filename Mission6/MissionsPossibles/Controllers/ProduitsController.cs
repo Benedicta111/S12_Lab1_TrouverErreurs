@@ -68,8 +68,8 @@ namespace Mission.Controllers
             if (ModelState.IsValid)
             {
                 _context.Produits.Add(produit_VM.Produit);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                 _context.SaveChanges();
+                return this.RedirectToAction("Index");
             }
          
             return View(produit_VM);
